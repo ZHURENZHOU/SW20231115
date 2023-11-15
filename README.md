@@ -1,23 +1,22 @@
 # SW20231115
 ## 그림 경계선 추출 코드 설명
 
-# 그림 읽기
-img=cv2.imread("/content/drive/MyDrive/computer vision/sample3.jpg")
-# 각 채널에 대한 임계값 처리
-retval,img_0=cv2.threshold(img[:,:,0],110,255,cv2.THRESH_BINARY)
+## 코드 기능
 
-retval,img_1=cv2.threshold(img[:,:,1],205,255,cv2.THRESH_BINARY_INV)
+코드는 OpenCV 라이브러리를 사용하여 이미지 테두리를 추출하는 기능을 구현합니다.주요 단계는 다음과 같습니다.
 
-retval,img_2=cv2.threshold(img[:,:,2],200,255,cv2.THRESH_BINARY_INV)
-# 임계값 처리된 이미지를 조합하여 마스크 만들기
-img_0_1=cv2.bitwise_and(img_0,img_1)
+- 그림 읽기
+- 그림을 그레이스케일로 변환하기
+- Canny 에지 탐지 사용
+- 그림의 윤곽을 찾다
+- 그림의 테두리를 그리고 결과를 표시합니다
 
-msk=cv2.bitwise_and(img_0_1,img_2)
-# 원본 이미지에 마스크 적용하기
-result_img=cv2.bitwise_and(img, img, mask= msk)
-# 원본 그림 및 중간 결과 보이기
-cv2_imshow(img);cv2_imshow(img_0);
+## 코드 사용
 
-cv2_imshow(img_1);cv2_imshow(img_2);
+'extract_image_border' 함수를 호출하여 이미지 경로를 불러오면 테두리가 있는 이미지를 표시할 수 있습니다.
 
-cv2_imshow(msk);cv2_imshow(result_img);
+```python
+image_path = 'path/to/your/image.jpg'
+extract_image_border(image_path)
+
+**주의: ** 함수를 호출하기 전에 이미지 경로가 올바른지 확인하십시오.
